@@ -1,0 +1,20 @@
+# Use an official Node.js runtime as a parent image
+FROM node:16-alpine
+
+# Set the working directory
+WORKDIR /usr/src/app
+
+# Copy package files and install dependencies
+COPY package*.json ./
+RUN npm install --production
+
+# Copy the rest of your application source code
+COPY . .
+
+# Expose the port on which your app will run
+EXPOSE 3000
+
+# Define the command to start your app
+CMD ["node", "src/index.js"]
+# If  using a different entry point, replace the above line with your specific command
+# CMD ["npm", "start"]  # Uncomment this line to use npm start
